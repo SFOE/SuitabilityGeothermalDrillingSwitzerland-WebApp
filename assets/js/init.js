@@ -215,9 +215,9 @@ var CheckSuitability = function (easting, northing, canton, map2, lang) {
 			suitability = 2;
 		}
 
-		if ($.contains(document.body, document.getElementById("score"))) {	
-			$('#score').html("Fünf Ergebnisse: " + values);
-		}
+		// if ($.contains(document.body, document.getElementById("score"))) {	
+			// $('#score').html("Fünf Ergebnisse: " + values);
+		// }
 
 
 		updateSuitabilityInfo(suitability);
