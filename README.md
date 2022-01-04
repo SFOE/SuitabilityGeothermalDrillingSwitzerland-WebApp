@@ -1,8 +1,8 @@
 # SuitabilityGeothermalDrillingSwitzerland-WebApp
 
-Front-End of the Web-App www.kann-ich-bohren.ch.
+Front end of the web app www.kann-ich-bohren.ch.
 
-This Web-App uses the Library [SuitabilityGeothermalDrillingSwitzerland](https://github.com/SFOE/SuitabilityGeothermalDrillingSwitzerland).
+This web app uses the library [SuitabilityGeothermalDrillingSwitzerland](https://github.com/SFOE/SuitabilityGeothermalDrillingSwitzerland).
 
 dev:
 https://www.uvek-gis.admin.ch/BFE/testumgebung/kannichbohren/
