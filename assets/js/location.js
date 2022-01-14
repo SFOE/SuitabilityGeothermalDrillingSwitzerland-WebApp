@@ -11,22 +11,11 @@ var geocode = function(map, coords) {
   pointTwo = []
   pointTwo[0] = mapExtent[2]
   pointTwo[1] = mapExtent[3]
-  
-  // console.log("pointOne: " + pointOne)
-  // console.log("pointTwo: " + pointTwo)
+
   
 	 extent1WGS84 = ol.proj.toLonLat(pointOne);
 	 extent2WGS84 = ol.proj.toLonLat(pointTwo);
-	 
-	 
-		// //LV95
-		// var firstproj = "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs  ";
-		// //WGS84
-		// var secondproj = "+proj=longlat +datum=WGS84 +no_defs";
-
-		// let [lon, lat] = proj4(secondproj, firstproj, [easting, northing]);
-
-	 
+	  
 		//LV95
 		var firstproj = "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs  ";
 		//WGS84
@@ -55,26 +44,7 @@ var geocode = function(map, coords) {
 return $.getJSON(url);
 };
 
-// var geocode = function(map, coords) {
-  // var mapExtent = map.getView().calculateExtent(map.getSize());
-  // // Get pixel tolerance for 100.0 meters
-  // var pixelTolerance = getToleranceInPixels(100.0, mapExtent, map.getSize());
-  // var url = API3_URL + '/rest/services/api/MapServer/identify?' +
-     // 'geometryType=esriGeometryPoint' +
-     // '&geometry=' + coords.toString() +
-     // '&imageDisplay=' + map.getSize().toString() + ',96' +
-     // '&mapExtent=' + mapExtent.toString() +
-     // '&tolerance=' + pixelTolerance +
-     // '&order=distance' +
-     // '&layers=all:ch.bfs.gebaeude_wohnungs_register&returnGeometry=true';
-	 
-  // $(document.body).addClass('ajax-address');
-  // return $.getJSON(url).then(function(data) {
-    // $(document.body).removeClass('ajax-address');
-    // return data;
-  // });
-// return $.getJSON(url);
-// };
+
 /**
  * Get the current position of the user, then center the map on the
  * corresponding address.

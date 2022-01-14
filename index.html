@@ -11,7 +11,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <meta name="application-name" content="sonnendach"/>
+    <meta name="application-name" content="kann-ich-bohren.ch"/>
     
     <!-- Application icons -->
     <meta name="msapplication-TileImage" content="images/touch-icon-bund-144x144.png"/>
@@ -25,26 +25,26 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <meta name="description" content="Wie viel Strom und Wärme kann mein Dach produzieren? Finden Sie es heraus mit Sonnendach.ch">
-    <meta name="keywords" content="Solar, Energie, Dach, Sonne, Photovoltaik, Solarthermie, Solarwärme, Sonnendach, Strom, Solarstrom, Sonnenstrom">
-    <meta name="news_keywords" content="Solar, Energie, Dach, Sonne, Photovoltaik, Solarthermie, Solarwärme, Sonnendach, Strom, Solarstrom, Sonnenstrom">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="news_keywords" content="">
     <meta name="author" content="Bundesamt für Energie BFE">
 
-    <meta property="og:site_name" content="Sonnendach.ch">
-    <meta property="og:title" content="Wie viel Strom und Wärme kann mein Dach produzieren?">
-    <meta property="og:description" content="Wie viel Strom und Wärme kann mein Dach produzieren? Finden Sie es heraus mit Sonnendach.ch.">
+    <meta property="og:site_name" content="kann-ich-bohren.ch">
+    <meta property="og:title" content="Kann ich für mein Gebäude eine Erdwärmesonde bohren?">
+    <meta property="og:description" content="">
     <meta property="og:type" content="WebApplication">
-    <meta property="og:url" content="http://www.sonnendach.ch">
-    <meta property="og:image" content="http://www.uvek-gis.admin.ch/BFE/sonnendach/images/appSonnendachCH.png">
+    <meta property="og:url" content="http://www.kann-ich-bohren.ch">
+    <meta property="og:image" content="">
     <meta property="og:locale" content="de_CH" />
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@EnergieSchweiz">
 		<meta name="twitter:creator" content="@EnergieSchweiz">
-    <meta name="twitter:title" content="Sonnendach.ch">
-    <meta name="twitter:description" content="Wie viel Strom und Wärme kann mein Dach produzieren? Finden Sie es heraus mit Sonnendach.ch.">
-    <meta name="twitter:image" content="http://www.uvek-gis.admin.ch/BFE/sonnendach/images/appSonnendachCH.png">
-    <meta name="twitter:url" content="http://www.sonnendach.ch">
+    <meta name="twitter:title" content="kann-ich-bohren.ch">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+    <meta name="twitter:url" content="http://www.kann-ich-bohren.ch">
 
 
     <!-- CSS -->
@@ -156,6 +156,7 @@
               <div class="address-loading"></div>
             </header>
             <header class="major">
+				<img src="assets/css/images/loader.gif" class="hidden" id="loader">
               <!-- Keine Adresse gefunden -->
               <h4 class="hidden-localized trn">bittelokal</h4>
               <h4 class="show-no-roof trn">noRoofFound</h4> <!-- Keine Adresse, Kein Dach, in Abdeckung -->
@@ -169,7 +170,6 @@
                   </li>
                 </ul>
               </h4>
-              <div class="roof-loading"></div>
 			  <h4 class="show-roof"><span id="eignungLong"></span></h4>
 			  <!-- <h4 class="show-roof"><span id="score"></span></h4> -->
             </header>
@@ -260,7 +260,7 @@
             <span class="trn">TextLibrary</span>
           </p>		  
           <ul class="actions uniform">
-            <li><a href="" class="button" id="libButton" target="_blank"><span class="trn">libButton</span></a></li>
+            <li><a href="https://github.com/SFOE/SuitabilityGeothermalDrillingSwitzerland" class="button" id="libButton" target="_blank"><span class="trn">libButton</span></a></li>
           </ul>
           <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
             <a href="#one" class="scrolly icon major fa-angle-double-up"></a>
@@ -277,7 +277,7 @@
       </ul>
       <ul class="copyright">
         <li><span class="trn">copyrightMain</span></li>
-        <li>v 0.</li>
+        <li>v 1.0</li>
         <li><span class="trn">contact</span></li>
         <li><span class="trn">legal</span></li>
       </ul>
@@ -289,8 +289,6 @@
     <script src="assets/js/jquery.placeholder.2.0.7.min.js"></script>
     <script src="assets/js/typeahead.bundle.0.11.1.js"></script> 
     <script src="assets/js/jquery.translate.0.9.1.js"></script>
-    <script src="assets/js/d3.min.js"></script>
-    <script src="assets/js/d3.tip.v0.6.3.js"></script>
 
 	  <script src="assets/js/jquery.scrolly.min.js"></script>
 		<script src="assets/js/skel.min.js"></script>
@@ -301,8 +299,6 @@
     <script src="assets/js/proj4.js"></script>
     <script src="assets/js/EPSG21781.js"></script>
     <script src="assets/js/EPSG2056.js"></script>
-    <script src="assets/js/layers.js"></script>
-    <script src="assets/js/map.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/location.js"></script>

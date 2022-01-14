@@ -1,5 +1,5 @@
 /**
- * This function detects is a string contains coordinates
+ * This function detects if a string contains coordinates
  *
  */ 
 var isCoordinates =  function(extent, query) {
@@ -98,117 +98,6 @@ var isCoordinates =  function(extent, query) {
     Math.round(position[1] * 1000) / 1000] : undefined;
 };
 
-function getOrientationText(orient, translator) {
-    var orientation;
-    if (orient >= 157 && orient <=180) {
-       orientation = translator.get('north');
-    } else if (orient >= -180 && orient <= -157) {
-       orientation = translator.get('north');
-    } else if (orient >= -158 && orient <= -113) {
-       orientation = translator.get('northeast');
-    } else if (orient >= -112 && orient <= -67) {
-       orientation = translator.get('east');
-    } else if (orient >= -68 && orient <= -23) {
-       orientation = translator.get('southeast');
-    } else if (orient >= -22 && orient <= 22) {
-       orientation = translator.get('south');
-    } else if (orient >= 23 && orient <= 67) {
-       orientation = translator.get('southwest');
-    } else if (orient >= 68 && orient <= 112) {
-       orientation = translator.get('west');
-    } else if (orient >= 113 && orient <= 156) {
-       orientation = translator.get('northwest');
-    } 
-return (orientation);
-};
-
-var getSuitabilityText = function(suit, translator) {
-  var suitability;
-  if (suit == 1) {
-    suitability = translator.get('low');
-  } else if (suit == 2) {
-    suitability = translator.get('medium');
-  } else if (suit == 3) {
-    suitability = translator.get('good');
-  } else if (suit == 4) {
-    suitability = translator.get('veryGood');
-  } else if (suit == 5) {
-    suitability = translator.get('excellent');
-  }
-  return (suitability);
-};
-
-
-function flyTo(location, done, view) {
-  const duration = 2000;
-  const zoom = view.getZoom();
-  let parts = 2;
-  let called = false;
-  function callback(complete) {
-    --parts;
-    if (called) {
-      return;
-    }
-    if (parts === 0 || !complete) {
-      called = true;
-      done(complete);
-    }
-  }
-  view.animate(
-    {
-      center: location,
-      duration: duration,
-    },
-    callback
-  );
-  view.animate(
-    {
-      zoom: zoom - 1,
-      duration: duration / 2,
-    },
-    {
-      zoom: zoom,
-      duration: duration / 2,
-    },
-    callback
-  );
-}
-
-// var flyTo = function(map, dest, destRes) {
-  // var size = map.getSize();
-  // var source = map.getView().getCenter();
-  // var sourceRes = map.getView().getResolution();
-  // var dist = Math.sqrt(Math.pow(source[0] - dest[0], 2),
-      // Math.pow(source[1] - dest[1], 2));
-  // var duration = Math.min(Math.sqrt(300 + dist / sourceRes * 1000),
-      // 3000);
-  // var start = +new Date();
-  // var pan = ol.animation.pan({
-    // duration: duration,
-    // source: source,
-    // start: start
-  // });
-  // if (dist > 1000 || sourceRes != destRes) {
-    // var bounce = ol.animation.bounce({
-      // duration: duration,
-      // resolution: Math.max(sourceRes, dist / 1000,
-          // // needed to don't have up an down and up again in zoom
-          // destRes * 1.2),
-      // start: start
-    // });
-    // var zoom = ol.animation.zoom({
-      // resolution: sourceRes,
-      // duration: duration,
-      // start: start
-    // });
-    // map.beforeRender(pan, zoom, bounce);
-    // map.getView().setResolution(destRes);
-  // } else {
-    // map.beforeRender(pan);
-  // }
-  // map.getView().setCenter(dest);
-// };
-
 
 function formatNumber(number) {
   number = '' + number;
@@ -253,37 +142,3 @@ var getToleranceInPixels = function(toleranceMeters, mapExtent, display) {
 var goTo = function(id) {
   $('#goTo' + (id.charAt(0).toUpperCase() + id.slice(1))).click();
 }
-
-var monthToText = function(month) {
-
-  var monthText = '';
-
-  if (month === "1") {
-    monthText = translator.get('monthshort1');
-  } else if (month == 2) {
-    monthText = translator.get('monthshort2');
-  } else if (month == 3) {
-    monthText = translator.get('monthshort3');
-  } else if (month == 4) {
-    monthText = translator.get('monthshort4');
-  } else if (month == 5) {
-    monthText = translator.get('monthshort5');
-  } else if (month == 6) {
-    monthText = translator.get('monthshort6');
-  } else if (month == 7) {
-    monthText = translator.get('monthshort7');
-  } else if (month == 8) {
-    monthText = translator.get('monthshort8');
-  } else if (month == 9) {
-    monthText = translator.get('monthshort9');
-  } else if (month == 10) {
-    monthText = translator.get('monthshort10');
-  } else if (month == 11) {
-    monthText = translator.get('monthshort11');
-  } else if (month == 12) {
-    monthText = translator.get('monthshort12');
-  }
-
-  return monthText;
-
-};

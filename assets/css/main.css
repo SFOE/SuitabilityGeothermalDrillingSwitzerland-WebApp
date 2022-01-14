@@ -2649,7 +2649,11 @@
 	.button2suit1 {
 		background-color: rgba(77,175,74, 1);
 		font-weight: 400;
-	}			
+	}
+
+	.hidden {
+		display: none;
+	}	
 
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,

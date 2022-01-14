@@ -4,10 +4,16 @@
  */
 
 //onAddressFound
+//getCanton
+//LV03toLV95
+//CheckSuitability
+//addWMS
+//addURLCantonToButton
 //updateSuitabilityInfo
-//onRoofFound
-//clearHighlight
 //init
+//ReloadAddress
+//UpdateURLinBrowser
+
 
 
 //First Entry-Point: Search of address -> SwissSearch -> onAddressFound
@@ -35,9 +41,16 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
 
     $('#addressOutput').html(label);
     $(document.body).addClass('localized');
+    $(document.body).addClass('ajax-roof');	
     $(document.body).addClass('address-found');
     $(document.body).removeClass('localized-error');
     $(document.body).removeClass('no-address');
+	
+	if ($.contains(document.body, document.getElementById("eignungbutton2"))) {
+		document.getElementById("eignungbutton2").className = 'hidden';
+		document.getElementById("eignungLong").className = 'hidden';
+		document.getElementById("loader").className = '';
+	}
 
     var langs = ['de', 'fr', 'it', 'en'];
     var permalink = addPermalink();
@@ -91,7 +104,6 @@ var getCanton = function (easting, northing, lang, map2, lang) {
 		query = query + '&sr=2056';
 	}
 	
-	// console.log(query)
 			
     $.getJSON(query).then(function(data) { //success(data)
       	if (data.results && data.results.length > 0) {
@@ -137,39 +149,34 @@ var CheckSuitability = function (easting, northing, canton, map2, lang) {
 	var suitability = 999;
 
 	var p1 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing), canton).then(harmonisedValue => { 
+		BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing), canton, false).then(harmonisedValue => { 
 			resolve(harmonisedValue);
 		});
 	});
 
 	var p2 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting)+distance, parseInt(northing), canton).then(harmonisedValue => { 
+		BfeLib.CheckSuitabilityCanton(parseInt(easting)+distance, parseInt(northing), canton, false).then(harmonisedValue => { 
 			resolve(harmonisedValue);
 		});
 	});
 
 	var p3 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting)-distance, parseInt(northing), canton).then(harmonisedValue => { 
+		BfeLib.CheckSuitabilityCanton(parseInt(easting)-distance, parseInt(northing), canton, false).then(harmonisedValue => { 
 			resolve(harmonisedValue);
 		});
 	});
 
 	var p4 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing)+distance, canton).then(harmonisedValue => { 
+		BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing)+distance, canton, false).then(harmonisedValue => { 
 			resolve(harmonisedValue);
 		});
 	});
 
 	var p5 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing)-distance, canton).then(harmonisedValue => { 
+		BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing)-distance, canton, false).then(harmonisedValue => { 
 			resolve(harmonisedValue);
 		});
 	});
-	
-	// BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing), canton).then(harmonisedValue => { 
-		// suitability = harmonisedValue;
-		// updateSuitabilityInfo(suitability);
-	// });
 	
 	Promise.all([p1, p2, p3, p4, p5]).then(values => {
 		
@@ -215,22 +222,11 @@ var CheckSuitability = function (easting, northing, canton, map2, lang) {
 			suitability = 2;
 		}
 
-		// if ($.contains(document.body, document.getElementById("score"))) {	
-			// $('#score').html("Fünf Ergebnisse: " + values);
-		// }
-
-
 		updateSuitabilityInfo(suitability);
 
 	}, reason => {
 	  console.log(reason)
 	});
-
-	// //Eignung per API-Call abfragen
-	// BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing), canton).then(harmonisedValue => { 
-		// suitability = harmonisedValue;
-		// updateSuitabilityInfo(suitability);
-	// });
 
 	addWMS(canton, map2);
 	addURLCantonToButton(canton, lang);
@@ -249,13 +245,9 @@ var CheckSuitability = function (easting, northing, canton, map2, lang) {
 }
 
 var addWMS = function (canton, map2) {
-	
-	// console.log("addWMS");
 
 	// remove all layers in map2
 	map2.getLayers().forEach(layer => {
-		// console.log("Layers");
-		// console.log(layer);
 		if (layer && layer.get('name') != 'background-layer2' && layer.get('name') != 'markerLayer2') {
 			map2.removeLayer(layer);
 		}
@@ -265,8 +257,6 @@ var addWMS = function (canton, map2) {
 	//Kantonaler WMS hinzufügen
 	BfeLib.GetWMSCanton(canton, true).then(url => {
 		url.forEach(element => {
-			console.log(url);
-			console.log(element);
 
 			var newLayer = new ol.layer.Image({
 				source: element,
@@ -284,14 +274,10 @@ var addWMS = function (canton, map2) {
 var addURLCantonToButton = function (canton, lang) {
 	
   if (canton) {
-	  
-	  console.log(canton);
 
   url = "cantonsURLs.json";
 
     $.getJSON(url).then(function(data) {
-		
-		// console.log(data);
 		
 		data.forEach(myFunction);
 		
@@ -362,7 +348,10 @@ var updateSuitabilityInfo = function(suitability) {
 
 	if ($.contains(document.body, document.getElementById("eignungLong"))) {	
 		$('#eignungLong').html(translator.get('suitability' + suitability));
+		document.getElementById("eignungLong").className = '';		
 	}
+	
+	document.getElementById("loader").className = 'hidden';
 
 	//add css-class
 	$(document.body).removeClass('no-roof').removeClass('no-roof-outside-perimeter').addClass('roof');
@@ -476,7 +465,9 @@ var init = function(nointeraction) {
 		view: new ol.View({
 			projection: "EPSG:3857",
 			center: [900000, 5900000],
-			zoom: 8
+			zoom: 8,
+			minZoom: 7,
+			maxZoom: 20
 		}),
 	});
 	
@@ -488,13 +479,14 @@ var init = function(nointeraction) {
 		view: new ol.View({
 			projection: "EPSG:3857",
 			center: [900000, 5900000],
-			zoom: 8
+			zoom: 8,
+			minZoom: 7,
+			maxZoom: 20
 		}),
 	});
 
 	// Handle map click: fill out form and submit
 	map.on('click', function(evt) {
-		console.log(evt.coordinate);
 
 		// LV95
 		var secondproj = "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs ";
@@ -506,7 +498,11 @@ var init = function(nointeraction) {
 			geometry: new ol.geom.Point(evt.coordinate)
 		});
 		
-		console.log(lon);
+		if ($.contains(document.body, document.getElementById("eignungbutton2"))) {
+			document.getElementById("eignungbutton2").className = 'hidden';
+			document.getElementById("eignungLong").className = 'hidden';
+			document.getElementById("loader").className = '';
+		}
 		
 		map.getView().setCenter(evt.coordinate);
 		map.getView().setZoom(19);
@@ -523,7 +519,6 @@ var init = function(nointeraction) {
 		coord[1] = parseInt(lat);		
 
 		getCanton(lon, lat, lang, map2, lang);
-		console.log(coord)
 		geocode(map, coord).then(function(data) {
 			ReloadAddress(data.results[0]);
 		});	
@@ -531,9 +526,7 @@ var init = function(nointeraction) {
 
 	// Init address-Search
 	initSearch(map, marker, onAddressFound, map2, marker2);
-	
-	// addAllWMS(map2);
-	
+		
 	// Init geoloaction button
 	locationBt.click(function() {
 	  body.removeClass('localized-error');
@@ -551,6 +544,12 @@ var init = function(nointeraction) {
 		coord[1] = parseInt(permalink.Y);
 		northing = parseInt(permalink.Y);
 		easting = parseInt(permalink.X);
+		
+		if ($.contains(document.body, document.getElementById("eignungbutton2"))) {
+			document.getElementById("eignungbutton2").className = 'hidden';
+			document.getElementById("eignungLong").className = 'hidden';
+			document.getElementById("loader").className = '';
+		}		
 
 		// Add marker at current location to map
 		//LV95
@@ -652,8 +651,6 @@ var init = function(nointeraction) {
 }
 
 var ReloadAddress = function (address) {
-	
-	// console.log(address);
 
 	var attr = address.attributes;
 	label = attr.strname_deinr + ' <br>' + attr.dplz4 + ' ' + attr.dplzname;

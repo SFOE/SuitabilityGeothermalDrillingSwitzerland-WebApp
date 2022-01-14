@@ -1,138 +1,137 @@
-[	
-	{
-		"name": "AG",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "AI",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "AR",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "BE",
-		"URLde": "https://www.bvd.be.ch/de/start/themen/wasser/gewaesserschutz/erdwaerme.html",
-		"URLfr": "https://www.bvd.be.ch/fr/start/themen/wasser/gewaesserschutz/erdwaerme.html",
-		"URLit": "https://www.bvd.be.ch/fr/start/themen/wasser/gewaesserschutz/erdwaerme.html"
-	}, {
-		"name": "BL",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "BS",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "FR",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "GE",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "GL",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "GR",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "JU",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "LU",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "NE",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "NW",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "OW",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "SG",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "SH",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "SO",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "SZ",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "TG",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "TI",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "UR",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "VD",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "VS",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "ZG",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "ZH",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}, {
-		"name": "LI",
-		"URLde": "",
-		"URLfr": "",
-		"URLit": ""
-	}
-]
+[{
+	"name": "AG",
+	"URLde": "https://www.ag.ch/de/bvu/umwelt_natur_landschaft/umwelt_1/erdwaermenutzung_1/erdwaermenutzung.jsp",
+	"URLfr": "https://www.ag.ch/de/bvu/umwelt_natur_landschaft/umwelt_1/erdwaermenutzung_1/erdwaermenutzung.jsp",
+	"URLit": "https://www.ag.ch/de/bvu/umwelt_natur_landschaft/umwelt_1/erdwaermenutzung_1/erdwaermenutzung.jsp"
+}, {
+	"name": "AI",
+	"URLde": "https://www.ai.ch/themen/natur-und-umwelt/umweltschutz/waermeerzeugungsanlagen/waermepumpen/erdsondenbohrungen",
+	"URLfr": "https://www.ai.ch/themen/natur-und-umwelt/umweltschutz/waermeerzeugungsanlagen/waermepumpen/erdsondenbohrungen",
+	"URLit": "https://www.ai.ch/themen/natur-und-umwelt/umweltschutz/waermeerzeugungsanlagen/waermepumpen/erdsondenbohrungen"
+}, {
+	"name": "AR",
+	"URLde": "https://www.ar.ch/verwaltung/departement-bau-und-volkswirtschaft/amt-fuer-umwelt/energie/bauten-und-anlagen/waermepumpen/",
+	"URLfr": "https://www.ar.ch/verwaltung/departement-bau-und-volkswirtschaft/amt-fuer-umwelt/energie/bauten-und-anlagen/waermepumpen/",
+	"URLit": "https://www.ar.ch/verwaltung/departement-bau-und-volkswirtschaft/amt-fuer-umwelt/energie/bauten-und-anlagen/waermepumpen/"
+}, {
+	"name": "BE",
+	"URLde": "https://www.bvd.be.ch/de/start/themen/wasser/gewaesserschutz/erdwaerme.html",
+	"URLfr": "https://www.bvd.be.ch/fr/start/themen/wasser/gewaesserschutz/erdwaerme.html",
+	"URLit": "https://www.bvd.be.ch/fr/start/themen/wasser/gewaesserschutz/erdwaerme.html"
+}, {
+	"name": "BL",
+	"URLde": "https://www.baselland.ch/politik-und-behorden/direktionen/bau-und-umweltschutzdirektion/umweltschutz-energie/wasser/grundwasser/erdwarmenutzung",
+	"URLfr": "https://www.baselland.ch/politik-und-behorden/direktionen/bau-und-umweltschutzdirektion/umweltschutz-energie/wasser/grundwasser/erdwarmenutzung",
+	"URLit": "https://www.baselland.ch/politik-und-behorden/direktionen/bau-und-umweltschutzdirektion/umweltschutz-energie/wasser/grundwasser/erdwarmenutzung"
+}, {
+	"name": "BS",
+	"URLde": "https://www.aue.bs.ch/wasser/grundwasser/bohrungen-in-das-grundwasser.html",
+	"URLfr": "https://www.aue.bs.ch/wasser/grundwasser/bohrungen-in-das-grundwasser.html",
+	"URLit": "https://www.aue.bs.ch/wasser/grundwasser/bohrungen-in-das-grundwasser.html"
+}, {
+	"name": "FR",
+	"URLde": "https://www.fr.ch/de/energie-landwirtschaft-und-umwelt/wasser/grundwasser/erdwaermesonden-und-grundwasserschutz",
+	"URLfr": "https://www.fr.ch/energie-agriculture-et-environnement/eau/eaux-souterraines/sondes-geothermiques-et-protection-des-eaux-souterraines",
+	"URLit": "https://www.fr.ch/energie-agriculture-et-environnement/eau/eaux-souterraines/sondes-geothermiques-et-protection-des-eaux-souterraines"
+}, {
+	"name": "GE",
+	"URLde": "https://www.ge.ch/dossier/transition-energetique-geneve/energies-renouvelables-potentiel-taille-proximite/geothermie",
+	"URLfr": "https://www.ge.ch/dossier/transition-energetique-geneve/energies-renouvelables-potentiel-taille-proximite/geothermie",
+	"URLit": "https://www.ge.ch/dossier/transition-energetique-geneve/energies-renouvelables-potentiel-taille-proximite/geothermie"
+}, {
+	"name": "GL",
+	"URLde": "https://www.gl.ch/verwaltung/bau-und-umwelt/umwelt-wald-und-energie/umweltschutz-und-energie/gewaesserschutz.html/752",
+	"URLfr": "https://www.gl.ch/verwaltung/bau-und-umwelt/umwelt-wald-und-energie/umweltschutz-und-energie/gewaesserschutz.html/752",
+	"URLit": "https://www.gl.ch/verwaltung/bau-und-umwelt/umwelt-wald-und-energie/umweltschutz-und-energie/gewaesserschutz.html/752"
+}, {
+	"name": "GR",
+	"URLde": "https://www.gr.ch/DE/institutionen/verwaltung/diem/aev/foerderprogramme/haustechnischeanlagen/waermepumpen/Seiten/default.aspx",
+	"URLfr": "https://www.gr.ch/IT/istituzioni/amministrazione/diem/aev/incentivazione/haustechnischeanlagen/waermepumpen/Seiten/default.aspx",
+	"URLit": "https://www.gr.ch/IT/istituzioni/amministrazione/diem/aev/incentivazione/haustechnischeanlagen/waermepumpen/Seiten/default.aspx"
+
+}, {
+	"name": "JU",
+	"URLde": "https://www.jura.ch/DEN/ENV/Geothermie/Geothermie.html",
+	"URLfr": "https://www.jura.ch/DEN/ENV/Geothermie/Geothermie.html",
+	"URLit": "https://www.jura.ch/DEN/ENV/Geothermie/Geothermie.html"
+}, {
+	"name": "LU",
+	"URLde": "https://uwe.lu.ch/themen/energie/erneuerbare_energien/erdwaerme",
+	"URLfr": "https://uwe.lu.ch/themen/energie/erneuerbare_energien/erdwaerme",
+	"URLit": "https://uwe.lu.ch/themen/energie/erneuerbare_energien/erdwaerme"
+}, {
+	"name": "NE",
+	"URLde": "https://www.ne.ch/autorites/DDTE/SENE/energie/Pages/Loi-energie-et-remplacement-chauffage.aspx",
+	"URLfr": "https://www.ne.ch/autorites/DDTE/SENE/energie/Pages/Loi-energie-et-remplacement-chauffage.aspx",
+	"URLit": "https://www.ne.ch/autorites/DDTE/SENE/energie/Pages/Loi-energie-et-remplacement-chauffage.aspx"
+}, {
+	"name": "NW",
+	"URLde": "https://www.nw.ch/amtumweltdienste/4020",
+	"URLfr": "https://www.nw.ch/amtumweltdienste/4020",
+	"URLit": "https://www.nw.ch/amtumweltdienste/4020"
+}, {
+	"name": "OW",
+	"URLde": "https://www.ow.ch/dienstleistungen/2055",
+	"URLfr": "https://www.ow.ch/dienstleistungen/2055",
+	"URLit": "https://www.ow.ch/dienstleistungen/2055"
+}, {
+	"name": "SG",
+	"URLde": "https://www.sg.ch/umwelt-natur/wasser/grundwasser---quellen-/geothermie0/erdwaermesonden.html",
+	"URLfr": "https://www.sg.ch/umwelt-natur/wasser/grundwasser---quellen-/geothermie0/erdwaermesonden.html",
+	"URLit": "https://www.sg.ch/umwelt-natur/wasser/grundwasser---quellen-/geothermie0/erdwaermesonden.html"
+}, {
+	"name": "SH",
+	"URLde": "https://sh.ch/CMS/Webseite/Kanton-Schaffhausen/Beh-rde/Verwaltung/Baudepartement/Tiefbau-Schaffhausen/Abteilung-Gew-sser-und-Materialabbau/Erdw-rme-1738469-DE.html",
+	"URLfr": "https://sh.ch/CMS/Webseite/Kanton-Schaffhausen/Beh-rde/Verwaltung/Baudepartement/Tiefbau-Schaffhausen/Abteilung-Gew-sser-und-Materialabbau/Erdw-rme-1738469-DE.html",
+	"URLit": "https://sh.ch/CMS/Webseite/Kanton-Schaffhausen/Beh-rde/Verwaltung/Baudepartement/Tiefbau-Schaffhausen/Abteilung-Gew-sser-und-Materialabbau/Erdw-rme-1738469-DE.html"
+}, {
+	"name": "SO",
+	"URLde": "https://so.ch/erdwaermegeothermie/erdwaermesonden-ews/",
+	"URLfr": "https://so.ch/erdwaermegeothermie/erdwaermesonden-ews/",
+	"URLit": "https://so.ch/erdwaermegeothermie/erdwaermesonden-ews/"
+}, {
+	"name": "SZ",
+	"URLde": "https://www.sz.ch/behoerden/umwelt-natur-landschaft/umwelt-und-energie/waermenutzung/waermenutzung-aus-untergrund-und-grundwasser.html/72-416-397-392-3900-3899",
+	"URLfr": "https://www.sz.ch/behoerden/umwelt-natur-landschaft/umwelt-und-energie/waermenutzung/waermenutzung-aus-untergrund-und-grundwasser.html/72-416-397-392-3900-3899",
+	"URLit": "https://www.sz.ch/behoerden/umwelt-natur-landschaft/umwelt-und-energie/waermenutzung/waermenutzung-aus-untergrund-und-grundwasser.html/72-416-397-392-3900-3899"
+}, {
+	"name": "TG",
+	"URLde": "https://energie.tg.ch/erneuerbare-energien/umweltwaerme-waermepumpen.html/3437",
+	"URLfr": "https://energie.tg.ch/erneuerbare-energien/umweltwaerme-waermepumpen.html/3437",
+	"URLit": "https://energie.tg.ch/erneuerbare-energien/umweltwaerme-waermepumpen.html/3437"
+}, {
+	"name": "TI",
+	"URLde": "https://www4.ti.ch/dt/da/spaas/upaai/temi/acqua-protezione-e-approvvigionamento/protezione-e-approvvigionamento/acque-sotterranee/utilizzo-termico-delle-acque-sotterranee-e-del-sottosuolo/sfruttamento-dellenergia-geotermica-e-dallacqua-sotterranea/",
+	"URLfr": "https://www4.ti.ch/dt/da/spaas/upaai/temi/acqua-protezione-e-approvvigionamento/protezione-e-approvvigionamento/acque-sotterranee/utilizzo-termico-delle-acque-sotterranee-e-del-sottosuolo/sfruttamento-dellenergia-geotermica-e-dallacqua-sotterranea/",
+	"URLit": "https://www4.ti.ch/dt/da/spaas/upaai/temi/acqua-protezione-e-approvvigionamento/protezione-e-approvvigionamento/acque-sotterranee/utilizzo-termico-delle-acque-sotterranee-e-del-sottosuolo/sfruttamento-dellenergia-geotermica-e-dallacqua-sotterranea/"
+}, {
+	"name": "UR",
+	"URLde": "https://www.ur.ch/themen/1531",
+	"URLfr": "https://www.ur.ch/themen/1531",
+	"URLit": "https://www.ur.ch/themen/1531"
+}, {
+	"name": "VD",
+	"URLde": "https://www.vd.ch/themes/environnement/eaux/eaux-souterraines/pompes-a-chaleur-pac/",
+	"URLfr": "https://www.vd.ch/themes/environnement/eaux/eaux-souterraines/pompes-a-chaleur-pac/",
+	"URLit": "https://www.vd.ch/themes/environnement/eaux/eaux-souterraines/pompes-a-chaleur-pac/"
+}, {
+	"name": "VS",
+	"URLde": "https://www.vs.ch/de/web/sefh/umgebungswarme",
+	"URLfr": "https://www.vs.ch/fr/web/sefh/chaleur-de-l-environnement",
+	"URLit": "https://www.vs.ch/fr/web/sefh/chaleur-de-l-environnement"
+}, {
+	"name": "ZG",
+	"URLde": "https://www.zg.ch/behoerden/baudirektion/amt-fuer-umwelt/energie-klima/erdwaermesonden",
+	"URLfr": "https://www.zg.ch/behoerden/baudirektion/amt-fuer-umwelt/energie-klima/erdwaermesonden",
+	"URLit": "https://www.zg.ch/behoerden/baudirektion/amt-fuer-umwelt/energie-klima/erdwaermesonden"
+}, {
+	"name": "ZH",
+	"URLde": "https://www.zh.ch/de/planen-bauen/bauvorschriften/energienutzung-untergrund-wasser.html",
+	"URLfr": "https://www.zh.ch/de/planen-bauen/bauvorschriften/energienutzung-untergrund-wasser.html",
+	"URLit": "https://www.zh.ch/de/planen-bauen/bauvorschriften/energienutzung-untergrund-wasser.html"
+}, {
+	"name": "LI",
+	"URLde": "https://www.llv.li/inhalt/11746/amtsstellen/erdwarmesonden",
+	"URLfr": "https://www.llv.li/inhalt/11746/amtsstellen/erdwarmesonden",
+	"URLit": "https://www.llv.li/inhalt/11746/amtsstellen/erdwarmesonden"
+}]
