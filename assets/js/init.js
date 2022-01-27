@@ -15,7 +15,6 @@
 //UpdateURLinBrowser
 
 
-
 //First Entry-Point: Search of address -> SwissSearch -> onAddressFound
 var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTolerance, map2, marker2, lang) {
   $('.typeahead').typeahead('val', '');
@@ -237,7 +236,12 @@ var CheckSuitability = function (easting, northing, canton, map2, lang) {
 		var URLLists = '';
 
 		legendUrl.forEach(element => {
-			URLLists += "<img src='" + element + "' /><br>";
+			
+			if (element === undefined || element == "") {
+				URLLists += "<img src='images/empty.png' alt='Legende'/><br>";
+			} else {
+				URLLists += "<img src='" + element + "' alt='Legende'/><br>";
+			}
 		});
 		document.getElementById("GetWMSLegend").innerHTML = URLLists;
 	});
@@ -252,20 +256,34 @@ var addWMS = function (canton, map2) {
 			map2.removeLayer(layer);
 		}
 	});	
-
-
+	
 	//Kantonaler WMS hinzufügen
+	// BfeLib.SetProxyServer('https://bfe-cors-anywhere.herokuapp.com/');
+	// BfeLib.GetWMSCanton(canton, true, true).then(url => {
 	BfeLib.GetWMSCanton(canton, true).then(url => {
+
 		url.forEach(element => {
+			
+			if (element != undefined) {
 
-			var newLayer = new ol.layer.Image({
-				source: element,
-				opacity: 0.5
-			});
+				var newLayer = new ol.layer.Image({
+					source: element,
+					opacity: 0.5
+				});
 
-			map2.addLayer(newLayer);
+				map2.addLayer(newLayer);
+				
+				if (canton == "VD") {
+					newZoom = 15;		
+				} else {
+					newZoom = 19;
+				}
+				map2.getView().setZoom(newZoom);
+			
+			}
 
 		});
+		
 	});
 	
 }
@@ -275,7 +293,7 @@ var addURLCantonToButton = function (canton, lang) {
 	
   if (canton) {
 
-  url = "cantonsURLs.json";
+  url = "cantonsWebsites.json";
 
     $.getJSON(url).then(function(data) {
 		
@@ -583,7 +601,7 @@ var init = function(nointeraction) {
 
   if ($.contains(document.body, document.getElementById("socialTwitter"))) {
     document.getElementById("socialTwitter").href = 
-    'https://twitter.com/intent/tweet?text=' + translator.get('pagetitle').replace(" ","%20") + '&url=' + translator.get('domain') + '&related=mhertach,BFEenergeia,EnergieSchweiz&hashtags=solar&via=EnergieSchweiz';
+    'https://twitter.com/intent/tweet?text=' + translator.get('pagetitle').replace(" ","%20") + '&url=' + translator.get('domain') + '&related=BFEgeoinfo,BFEenergeia,EnergieSchweiz&hashtags=ErneuerbarHeizen&via=EnergieSchweiz';
   }
 
   if ($.contains(document.body, document.getElementById("socialFB"))) {
@@ -594,34 +612,6 @@ var init = function(nointeraction) {
   if ($.contains(document.body, document.getElementById("socialMail"))) {
     document.getElementById("socialMail").href = 
     'mailto:?subject=' + translator.get('pagetitle') + ' ' + translator.get('domain');
-  }
-
-  if ($.contains(document.body, document.getElementById("linkToSonnenfassade"))) {
-    document.getElementById('linkToSonnenfassade').href = translator.get('domainfassade');
-  }
-
-  if ($.contains(document.body, document.getElementById("linkHeaderPic"))) {
-    document.getElementById('linkHeaderPic').href = translator.get('domainfassade');
-  }
-
-  if ($.contains(document.body, document.getElementById("linkSwitch"))) {
-    document.getElementById('linkSwitch').href = translator.get('domainfassade');
-  }
-
-  if ($.contains(document.body, document.getElementById("documentationLink"))) {
-
-    document.getElementById('documentationLink').href = translator.get('documentationLink');
-  }
-
-  if ($.contains(document.body, document.getElementById("stepbystepLink"))) {
-
-    document.getElementById('stepbystepLink').href = translator.get('stepbystepLink');
-  }
-
-  if ($.contains(document.body, document.getElementById("einbettenLink"))) {
-
-    document.getElementById('einbettenLink').href = 
-      'einbetten.html?lang=' + lang;
   }
 
   var linkhintButton = '';

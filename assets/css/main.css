@@ -2616,14 +2616,14 @@
 		cursor: pointer;
 		display: inline-block;
 		font-size: 0.9em;
-		height: 2.75em;
+		/* height: 2.75em; */
 		letter-spacing: 0.01em;
 		line-height: 2.75em;
 		padding: 0 2em;
 		text-align: left;
 		text-decoration: none;
 		text-indent: 0.125em;
-		white-space: nowrap;
+		/* white-space: nowrap; */
 	}
 
 	.button2suit5 {
