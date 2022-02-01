@@ -1,11 +1,7 @@
-/**
- * Display the marker at the coordinate of an address. Then search the best roof
- * associates to this address 
- */
-
 //onAddressFound
 //getCanton
 //LV03toLV95
+//checkPipelineConsultationAreas
 //CheckSuitability
 //addWMS
 //addURLCantonToButton
@@ -112,7 +108,7 @@ var getCanton = function (easting, northing, lang, map2, lang) {
 	          CantonShort = val.attributes.ak;
 			  
 			  if (parseInt(easting) > 2000000) {
-				CheckSuitability(easting, northing, CantonShort, map2, lang);
+				checkPipelineConsultationAreas(easting, northing, CantonShort, map2, lang);
 			  } else {
 				LV03toLV95(easting, northing, CantonShort, map2);
 			  }
@@ -136,96 +132,163 @@ var LV03toLV95 = function (easting, northing, canton, map2) {
 
     $.getJSON(query).then(function(data) {
 		
-		CheckSuitability(data.easting, data.northing, canton, map2, lang);	
+		checkPipelineConsultationAreas(data.easting, data.northing, CantonShort, map2, lang);
 		
     });
 	
 }
 
-var CheckSuitability = function (easting, northing, canton, map2, lang) {
+// old check PipelineConsultationAreas based on huge PipelineConsultationAreas of https://s.geo.admin.ch/95dcebbe3c
+// replaced because only 20m areas are relevant
+// var checkPipelineConsultationAreas = function (easting, northing, CantonShort, map2, lang) {
 
-	var distance = 20;
-	var suitability = 999;
-
-	var p1 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing), canton, false).then(harmonisedValue => { 
-			resolve(harmonisedValue);
-		});
-	});
-
-	var p2 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting)+distance, parseInt(northing), canton, false).then(harmonisedValue => { 
-			resolve(harmonisedValue);
-		});
-	});
-
-	var p3 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting)-distance, parseInt(northing), canton, false).then(harmonisedValue => { 
-			resolve(harmonisedValue);
-		});
-	});
-
-	var p4 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing)+distance, canton, false).then(harmonisedValue => { 
-			resolve(harmonisedValue);
-		});
-	});
-
-	var p5 = new Promise((resolve, reject) => {
-		BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing)-distance, canton, false).then(harmonisedValue => { 
-			resolve(harmonisedValue);
-		});
-	});
+	// query = "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&FORMAT=image/png&TRANSPARENT=true&QUERY_LAYERS=ch.bfe.rohrleitungen-konsultationsbereiche&LAYERS=ch.bfe.rohrleitungen-konsultationsbereiche&FEATURE_COUNT=10&INFO_FORMAT=text/plain&LANG=de&I=1&J=1&CRS=EPSG:2056&WIDTH=2&HEIGHT=2&BBOX=" + String(Math.round(easting)) + "," + String(Math.round(northing)) + "," + String(Math.round(easting+2)) + "," + String(Math.round(northing+2));
 	
-	Promise.all([p1, p2, p3, p4, p5]).then(values => {
+	// $.get(query, function(data) {
+		// let result = data.indexOf("Search returned no results.");
+	  
+		// if (result === -1) { //inside of PipelineConsultationArea
+			// CheckSuitability(easting, northing, CantonShort, map2, lang, true);
+		// } else { //outside of PipelineConsultationArea
+			// CheckSuitability(easting, northing, CantonShort, map2, lang, false);
+		// }
+	// });	
+
+// }
+
+var checkPipelineConsultationAreas = function (easting, northing, CantonShort, map2, lang) {
+
+	// LV95
+	var firstproj = "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs";
+	// WGS84
+	var secondproj = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs";
+
+	let [lon, lat] = proj4(firstproj, secondproj, [easting, northing]);
+
+	d3.json('PipelinesConsultationAreas_generalised.json')
+	  .then(function(geojson) {
+		  
+		var IsPointInsideConsultationArea = false;
 		
-		var check_1 = 0;
-		var check_2 = 0;
-		var check_3 = 0;
-		var check_4 = 0;
-		var check_5 = 0;
-		var suit_tot = values[0] + values[1] + values[2] + values[3] + values[4];
+		polygons = geojson.geometries;
 		
-		if (values[0] == 1 || values[1] == 1 || values[2] == 1 || values[3] == 1 || values[4] == 1) {
-				check_1 = 1; //irgendein Ergebnis hat value 1
+		polygons.forEach(function(d) {
+			
+			if (d3.geoContains(d, [lon, lat]) === false) {
+				IsPointInsideConsultationArea = true;
+			}
+
+		})
+
+
+		if (IsPointInsideConsultationArea === true) { //inside of PipelineConsultationArea
+			CheckSuitability(easting, northing, CantonShort, map2, lang, true);
+		} else { //outside of PipelineConsultationArea
+			CheckSuitability(easting, northing, CantonShort, map2, lang, false);
 		}
+
+
+	  });
+
+}
+
+var CheckSuitability = function (easting, northing, canton, map2, lang, ConsultationArea) {
+	
+	if (ConsultationArea === true) { // inside ConsultationArea
 		
-		if (values[0] == 2 || values[1] == 2 || values[2] == 2 || values[3] == 2 || values[4] == 2) {
-				check_2 = 1; //irgendein Ergebnis hat value 2
-		}
-
-		if (values[0] == 3 || values[1] == 3 || values[2] == 3 || values[3] == 3 || values[4] == 3) {
-				check_3 = 1; //irgendein Ergebnis hat value 3
-		}
-
-		if (values[0] == 4 || values[1] == 4 || values[2] == 4 || values[3] == 4 || values[4] == 4) {
-				check_4 = 1; //irgendein Ergebnis hat value 4
-		}
-
-		if (values[0] == 5 || values[1] == 5 || values[2] == 5 || values[3] == 5 || values[4] == 5) {
-				check_5 = 1; //irgendein Ergebnis hat value 5
-		}
-		
-
-		if ((check_1 + check_2 + check_3 + check_4 + check_5) == 1) { //eindeutiges Ergebnis 1, 2, 3, 4 oder 5
-			suitability = values[0];
-		} else if ((check_1 + check_2 + check_3) == 3) {
-			suitability = 2;
-		} else if ((check_1 + check_3) == 2) {
-			suitability = 2;
-		} else if ((check_2 + check_3) == 2) {
-			suitability = 2;
-		} else if ((check_1 + check_2) == 2) {
-			suitability = 2;
-		} else {
-			suitability = 2;
-		}
-
+		suitability = 6;
 		updateSuitabilityInfo(suitability);
+		
+	} else { // outside ConsultationArea -> check suitability
 
-	}, reason => {
-	  console.log(reason)
-	});
+		var distance = 15;
+		var suitability = 999;
+
+		var p1 = new Promise((resolve, reject) => {
+			BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing), canton, false).then(harmonisedValue => { 
+				resolve(harmonisedValue);
+			});
+		});
+
+		var p2 = new Promise((resolve, reject) => {
+			BfeLib.CheckSuitabilityCanton(parseInt(easting)+distance, parseInt(northing), canton, false).then(harmonisedValue => { 
+				resolve(harmonisedValue);
+			});
+		});
+
+		var p3 = new Promise((resolve, reject) => {
+			BfeLib.CheckSuitabilityCanton(parseInt(easting)-distance, parseInt(northing), canton, false).then(harmonisedValue => { 
+				resolve(harmonisedValue);
+			});
+		});
+
+		var p4 = new Promise((resolve, reject) => {
+			BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing)+distance, canton, false).then(harmonisedValue => { 
+				resolve(harmonisedValue);
+			});
+		});
+
+		var p5 = new Promise((resolve, reject) => {
+			BfeLib.CheckSuitabilityCanton(parseInt(easting), parseInt(northing)-distance, canton, false).then(harmonisedValue => { 
+				resolve(harmonisedValue);
+			});
+		});
+		
+		Promise.all([p1, p2, p3, p4, p5]).then(values => {
+			
+			var check_1 = 0;
+			var check_2 = 0;
+			var check_3 = 0;
+			var check_4 = 0;
+			var check_5 = 0;
+			var suit_tot = values[0] + values[1] + values[2] + values[3] + values[4];
+			
+			if (values[0] == 1 || values[1] == 1 || values[2] == 1 || values[3] == 1 || values[4] == 1) {
+					check_1 = 1; //irgendein Ergebnis hat value 1
+			}
+			
+			if (values[0] == 2 || values[1] == 2 || values[2] == 2 || values[3] == 2 || values[4] == 2) {
+					check_2 = 1; //irgendein Ergebnis hat value 2
+			}
+
+			if (values[0] == 3 || values[1] == 3 || values[2] == 3 || values[3] == 3 || values[4] == 3) {
+					check_3 = 1; //irgendein Ergebnis hat value 3
+			}
+
+			if (values[0] == 4 || values[1] == 4 || values[2] == 4 || values[3] == 4 || values[4] == 4) {
+					check_4 = 1; //irgendein Ergebnis hat value 4
+			}
+
+			if (values[0] == 5 || values[1] == 5 || values[2] == 5 || values[3] == 5 || values[4] == 5) {
+					check_5 = 1; //irgendein Ergebnis hat value 5
+			}
+			
+
+			if ((check_1 + check_2 + check_3 + check_4 + check_5) == 1) { //eindeutiges Ergebnis 1, 2, 3, 4 oder 5
+				suitability = values[0];
+			} else if ((check_1 + check_2 + check_3) == 3) {
+				suitability = 2;
+			} else if ((check_1 + check_3) == 2) {
+				suitability = 2;
+			} else if ((check_2 + check_3) == 2) {
+				suitability = 2;
+			} else if ((check_1 + check_2) == 2) {
+				suitability = 2;
+			} else {
+				suitability = 2;
+			}
+
+			updateSuitabilityInfo(suitability);
+
+		}, reason => {
+		  console.log(reason)
+		});
+	
+	}
+	
+	
+	
+	
 
 	addWMS(canton, map2);
 	addURLCantonToButton(canton, lang);

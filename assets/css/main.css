@@ -2626,6 +2626,11 @@
 		/* white-space: nowrap; */
 	}
 
+	.button2suit6 {
+		background-color: rgba(228,26,28, 1);
+		font-weight: 400;
+	}
+
 	.button2suit5 {
 		background-color: rgba(190,174,212, 1);
 		font-weight: 400;
