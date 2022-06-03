@@ -241,6 +241,7 @@ var CheckSuitability = function (easting, northing, canton, map2, lang, Consulta
 			var check_3 = 0;
 			var check_4 = 0;
 			var check_5 = 0;
+			var check_999 = 0;
 			var suit_tot = values[0] + values[1] + values[2] + values[3] + values[4];
 			
 			if (values[0] == 1 || values[1] == 1 || values[2] == 1 || values[3] == 1 || values[4] == 1) {
@@ -262,7 +263,10 @@ var CheckSuitability = function (easting, northing, canton, map2, lang, Consulta
 			if (values[0] == 5 || values[1] == 5 || values[2] == 5 || values[3] == 5 || values[4] == 5) {
 					check_5 = 1; //irgendein Ergebnis hat value 5
 			}
-			
+
+			if (values[0] == 999 && values[1] == 999 && values[2] == 999 && values[3] == 999 && values[4] == 999) {
+					check_999 = 1; //irgendein Ergebnis hat value 5
+			}			
 
 			if ((check_1 + check_2 + check_3 + check_4 + check_5) == 1) { //eindeutiges Ergebnis 1, 2, 3, 4 oder 5
 				suitability = values[0];
@@ -274,6 +278,8 @@ var CheckSuitability = function (easting, northing, canton, map2, lang, Consulta
 				suitability = 2;
 			} else if ((check_1 + check_2) == 2) {
 				suitability = 2;
+			} else if (check_999 == 1) {
+				suitability = 999;
 			} else {
 				suitability = 2;
 			}
