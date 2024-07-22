@@ -340,7 +340,15 @@
                             "summand": 1
                         },
                         {
+                            "name": "Admissible aux conditions standard, jusqu’à 300 mètres",
+                            "summand": 1
+                        },
+                        {
                             "name": "Limitation",
+                            "summand": 2
+                        },
+                        {
+                            "name": "Limitation, soumis à des conditions spéciales",
                             "summand": 2
                         },
                         {
@@ -1193,17 +1201,17 @@
                     "Géothermie sur nappe (système ouvert)"
                 ]
             ],
-            "wmsUrl": "https://ge.ch/sitgags1/rest/services/VECTOR/SITG_OPENDATA_02/MapServer/6883",
-            "mapServerUrl": "https://ge.ch/sitgags1/services/VECTOR/SITG_OPENDATA_02/MapServer/WMSServer",
+            "wmsUrl": "https://app2.ge.ch/tergeoservices/rest/services/Hosted/GOL_EXPLOITATION_GEOTHERMIE/FeatureServer/0",
+            "mapServerUrl": "https://app2.ge.ch/tergeoservices/rest/services/Hosted/GOL_EXPLOITATION_GEOTHERMIE/MapServer/0",
             "wmsUrlEsriLayer": "22",
             "mapServerUrlLegendUrl": "",
             "infoFormat": "arcgis/json",
             "layers": [
                 {
-                    "name": "sonde_geothermique",
+                    "name": "GOL_EXPLOITATION_GEOTHERMIE",
                     "rootName": "features",
                     "nodeName": "attributes",
-                    "propertyName": "SECTEUR",
+                    "propertyName": "secteur",
                     "propertyValues": [
                         {
                             "name": "Sondes géothermiques verticales (système fermé)",
@@ -1439,7 +1447,7 @@
                 ]
             ],
             "wmsUrl": "https://www.geoservice.apps.be.ch/geoservice3/services/a42geo/of_utilitiescommunication01_de_ms_wms/MapServer/WMSServer?",
-            "infoFormat": "application/geojson",
+            "infoFormat": "application/geo+json",
             "layers": [
                 {
                     "name": "ERDSOND_ERDSOND_VW_16828",
